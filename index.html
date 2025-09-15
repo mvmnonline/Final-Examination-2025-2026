@@ -5,197 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MVM Nalabari - Final Examination Form 2025-2026</title>
     <style>
-        /* General Body Styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        /* Main Form Container */
-        .form-container {
-            max-width: 850px;
-            width: 100%;
-            background-color: #f7f9fc;
-            border: 2px solid #003366;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Header Section */
-        .form-header {
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
-        }
+        :root { --primary-color: #003366; --accent-color: #ff6600; --success-color: #28a745; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: flex-start; }
+        .form-container { max-width: 850px; width: 100%; background-color: #f7f9fc; border: 2px solid var(--primary-color); border-radius: 15px; padding: 25px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        .form-header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
         .form-header img { width: 120px; height: auto; }
-        .form-header h1 { color: #003366; margin: 10px 0 5px 0; font-size: 2em; }
-        .form-header h2 { color: #ff6600; margin: 0; font-size: 1.5em; font-weight: 500; }
-
-        /* Instructions Box */
-        .instructions {
-            background-color: #fff3e0;
-            border-left: 5px solid #ff9800;
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            border-radius: 5px;
-        }
-        .instructions h3 { color: #003366; margin-top: 0; }
+        .form-header h1 { color: var(--primary-color); margin: 10px 0 5px 0; font-size: 2em; }
+        .form-header h2 { color: var(--accent-color); margin: 0; font-size: 1.5em; font-weight: 500; }
+        .instructions { background-color: #fff3e0; border-left: 5px solid #ff9800; padding: 15px 20px; margin-bottom: 25px; border-radius: 5px; }
+        .instructions h3 { color: var(--primary-color); margin-top: 0; }
         .instructions ul { list-style-type: disc; margin: 10px 0 0 20px; padding: 0; color: #333; }
         .instructions li { margin-bottom: 8px; }
-
-        /* Main Form Body Styling */
         .form-body { background-color: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); }
-        .section-title { color: #003366; border-bottom: 2px solid #ff6600; padding-bottom: 8px; margin-bottom: 20px; font-size: 1.25em; }
-
-        /* Grid layout for form fields */
+        .section-title { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; margin-bottom: 20px; font-size: 1.25em; }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .form-group { display: flex; flex-direction: column; }
-
-        /* Labels and Inputs */
         label { font-weight: bold; color: #333; margin-bottom: 5px; }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
-            width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;
-            box-sizing: border-box; font-size: 16px; transition: border-color 0.3s, box-shadow 0.3s;
-            text-transform: uppercase;
-        }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s, box-shadow 0.3s; text-transform: uppercase; }
         input::placeholder { text-transform: none; }
-        input:focus, select:focus { border-color: #ff6600; box-shadow: 0 0 5px rgba(255, 102, 0, 0.5); outline: none; }
-
-        /* Upload Section */
+        input:focus, select:focus { border-color: var(--accent-color); box-shadow: 0 0 5px rgba(255, 102, 0, 0.5); outline: none; }
         .upload-section { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; text-align: center; margin-top: 20px; }
-        .upload-box { border: 2px dashed #003366; padding: 20px; border-radius: 10px; width: 250px; }
-        .upload-btn { background-color: #003366; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; display: inline-block; }
-        .file-name { font-size: 12px; color: #333; margin-top: 8px; font-style: italic; }
+        .upload-box { border: 2px dashed var(--primary-color); padding: 20px; border-radius: 10px; width: 250px; transition: background-color 0.3s; }
+        .upload-btn { background-color: var(--primary-color); color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; display: inline-block; }
+        .file-info { display: flex; align-items: center; justify-content: center; margin-top: 8px; }
+        .file-name { font-size: 12px; color: #333; font-style: italic; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .upload-success-icon { color: var(--success-color); font-size: 16px; margin-left: 5px; opacity: 0; transition: opacity 0.3s; }
         .upload-text { font-size: 12px; color: #555; margin-top: 5px; }
         input[type="file"] { display: none; }
-
-        /* Other styles... */
         .declaration { background-color: #e3f2fd; padding: 20px; margin-top: 25px; border-radius: 8px; text-align: center; }
-        .declaration h3 { color: #003366; margin-top: 0; }
-        .declaration p { font-style: italic; color: #333; margin: 15px 0; }
-        .declaration-check { font-weight: bold; display: inline-flex; align-items: center; cursor: pointer; }
-        .declaration-check input { margin-right: 8px; width: 18px; height: 18px; }
         .button-container { text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
         .action-btn { color: white; font-size: 18px; font-weight: bold; padding: 15px 40px; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, transform 0.2s; }
-        .preview-btn { background-color: #003366; }
+        .preview-btn { background-color: var(--primary-color); }
         .preview-btn:hover { background-color: #002244; transform: translateY(-2px); }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); }
         .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px 30px; border: 1px solid #888; width: 90%; max-width: 700px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .modal-header h2 { color: #003366; }
+        .modal-header h2 { color: var(--primary-color); }
         .close-btn { color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
-        .preview-data { margin-top: 20px; }
+        .preview-data { margin-top: 20px; max-height: 60vh; overflow-y: auto; }
         .preview-data table { width: 100%; border-collapse: collapse; }
         .preview-data td { padding: 10px; border: 1px solid #ddd; }
         .preview-data td:first-child { font-weight: bold; background-color: #f7f9fc; width: 30%; }
         .preview-data img { max-width: 150px; height: auto; border-radius: 5px; }
-        .success-message { display: none; text-align: center; padding: 40px; background: white; border-radius: 10px; }
-        .success-message h2 { color: #28a745; }
-        .loader { display: none; border: 8px solid #f3f3f3; border-radius: 50%; border-top: 8px solid #003366; width: 60px; height: 60px; animation: spin 2s linear infinite; margin: 20px auto; }
+        .page-container { position: relative; }
+        .success-message { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; text-align: center; }
+        .success-animation { width: 100px; height: 100px; margin: 20px auto; }
+        .success-animation .checkmark-circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: var(--success-color); fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        .success-animation .checkmark { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        .loader { display: none; border: 8px solid #f3f3f3; border-radius: 50%; border-top: 8px solid var(--primary-color); width: 60px; height: 60px; animation: spin 2s linear infinite; margin: 20px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @media (max-width: 768px) { body { padding: 10px; } .form-container, .form-body { padding: 15px; } .form-header h1 { font-size: 1.5em; } .form-header h2 { font-size: 1.2em; } .modal-content { width: 95%; margin: 10% auto; } }
-        @media (max-width: 480px) { .button-container { flex-direction: column; } .upload-box { width: 100%; } .preview-data td { display: block; width: 100%; box-sizing: border-box; } .preview-data td:first-child { margin-bottom: -1px; border-bottom: none; } }
+        @media (max-width: 768px) { body { padding: 10px; } .form-container, .form-body { padding: 15px; } .form-header h1 { font-size: 1.5em; } .form-header h2 { font-size: 1.2em; } }
+        @media (max-width: 480px) { .button-container { flex-direction: column; } .upload-box { width: 100%; } }
     </style>
 </head>
 <body>
-
-    <div class="form-container" id="formContainer">
-        
-        <header class="form-header">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXpYeuf6hD01Ma9osE62vGUlDMaqwuFp92mFgZLci_-TmoJDwRBE-xlmLo6bUnFMLgo01gQ1mRffvjVv3RLbH36tsNvGURIb8Mx4zOK_Qx2udXKEgK3K_GEKqhe5RlCi0kZIydiBsmwyJV44-m66eCTNXb2NTpzjIctzFymBg-BgSEAhmqATIGrxPXRQ/s224/logo.png" alt="School Logo">
-            <h1>MAHARISHI VIDYA MANDIR, NALBARI</h1>
-            <h2>Online Application Form For Final Examination 2025-2026</h2>
-        </header>
-
-        <section class="instructions">
-            <h3>INSTRUCTIONS ⚠️</h3>
-            <ul>
-                <li>Please fill the form in <strong>CAPITAL LETTERS</strong> only.</li>
-                <li>Photo size should be maximum <strong>100KB</strong> (JPEG or PNG format).</li>
-                <li>Signature size should be maximum <strong>50KB</strong> (JPEG or PNG format).</li>
-                <li>After submission, you will receive an Application Number in your email. Please note it down for future reference.</li>
-                <li>Review all details carefully before final submission as <strong>changes cannot be made afterwards</strong>.</li>
-            </ul>
-        </section>
-
-        <form id="examForm">
-            <div class="form-body">
-                <h3 class="section-title">STUDENT'S DETAILS</h3>
-                <div class="grid-container">
-                    <div class="form-group"><label for="student_name">STUDENT'S NAME</label><input type="text" id="student_name" name="student_name" placeholder="ENTER FULL NAME" required></div>
-                    <div class="form-group"><label for="class">CLASS</label><select id="class" name="class" required><option value="">-- SELECT CLASS --</option><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option><option value="V">V</option><option value="VI">VI</option><option value="VII">VII</option><option value="VIII">VIII</option><option value="IX">IX</option></select></div>
-                    <div class="form-group"><label for="section">SECTION</label><select id="section" name="section" required><option value="">-- SELECT SECTION --</option><option value="MAHA">MAHA</option><option value="RISHI">RISHI</option><option value="NONE">NONE</option></select></div>
-                    <div class="form-group"><label for="roll_no">ROLL NO</label><input type="text" id="roll_no" name="roll_no" placeholder="ENTER ROLL NUMBER" required></div>
-                    <div class="form-group"><label for="dob">DATE OF BIRTH</label><input type="date" id="dob" name="dob" required></div>
-                </div>
-
-                <h3 class="section-title" style="margin-top: 30px;">PARENT'S & CONTACT DETAILS</h3>
-                <div class="grid-container">
-                    <div class="form-group"><label for="father_name">FATHER'S NAME</label><input type="text" id="father_name" name="father_name" placeholder="ENTER FATHER'S FULL NAME" required></div>
-                    <div class="form-group"><label for="mother_name">MOTHER'S NAME</label><input type="text" id="mother_name" name="mother_name" placeholder="ENTER MOTHER'S FULL NAME" required></div>
-                    <div class="form-group"><label for="email_id">EMAIL ID</label><input type="email" id="email_id" name="email_id" placeholder="example@email.com" required></div>
-                    <div class="form-group"><label for="phone_number">PHONE NUMBER</label><input type="tel" id="phone_number" name="phone_number" placeholder="+91 XXXXXXXXXX" required></div>
-                </div>
-
-                <h3 class="section-title" style="margin-top: 30px;">DOCUMENT UPLOADS</h3>
-                <div class="upload-section">
-                    <div class="form-group">
-                        <label>STUDENT PHOTO</label>
-                        <div class="upload-box">
-                            <label for="student_photo" class="upload-btn">📤 Choose File</label>
-                            <input type="file" id="student_photo" name="student_photo" accept="image/jpeg, image/png" required>
-                            <p class="file-name" id="photoFileName"></p>
-                            <p class="upload-text">Max 100KB (JPEG/PNG)</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>STUDENT SIGNATURE</label>
-                        <div class="upload-box">
-                            <label for="student_signature" class="upload-btn">📤 Choose File</label>
-                            <input type="file" id="student_signature" name="student_signature" accept="image/jpeg, image/png" required>
-                            <p class="file-name" id="signatureFileName"></p>
-                            <p class="upload-text">Max 50KB (JPEG/PNG)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <section class="declaration">
-                <h3>Declaration</h3>
-                <p>I hereby declare that the information given above is true and correct to the best of my knowledge. I understand that any false information may lead to cancellation of my application.</p>
-                <label class="declaration-check"><input type="checkbox" id="declaration_agree" name="declaration_agree" required> I Agree</label>
+    <div class="page-container">
+        <div class="form-container" id="formContainer">
+            <header class="form-header">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXpYeuf6hD01Ma9osE62vGUlDMaqwuFp92mFgZLci_-TmoJDwRBE-xlmLo6bUnFMLgo01gQ1mRffvjVv3RLbH36tsNvGURIb8Mx4zOK_Qx2udXKEgK3K_GEKqhe5RlCi0kZIydiBsmwyJV44-m66eCTNXb2NTpzjIctzFymBg-BgSEAhmqATIGrxPXRQ/s224/logo.png" alt="School Logo">
+                <h1>MAHARISHI VIDYA MANDIR, NALBARI</h1>
+                <h2>Online Application Form For Final Examination 2025-2026</h2>
+            </header>
+            <section class="instructions">
+                <h3>INSTRUCTIONS ⚠️</h3>
+                <ul>
+                    <li>Please fill the form in <strong>CAPITAL LETTERS</strong> only.</li>
+                    <li>Photo size should be maximum <strong>100KB</strong> (JPEG or PNG format).</li>
+                    <li>Signature size should be maximum <strong>50KB</strong> (JPEG or PNG format).</li>
+                    <li>After submission, you will receive an Application Number in your email.</li>
+                    <li>Review all details carefully before final submission as <strong>changes cannot be made afterwards</strong>.</li>
+                </ul>
             </section>
-
-            <div class="button-container">
-                <button type="button" id="previewBtn" class="action-btn preview-btn">Preview</button>
+            <form id="examForm">
+                <div class="form-body">
+                    <h3 class="section-title">STUDENT'S DETAILS</h3>
+                    <div class="grid-container">
+                        <div class="form-group"><label for="student_name">STUDENT'S NAME</label><input type="text" id="student_name" name="student_name" placeholder="ENTER FULL NAME" required></div>
+                        <div class="form-group"><label for="class">CLASS</label><select id="class" name="class" required><option value="">-- SELECT CLASS --</option><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option><option value="V">V</option><option value="VI">VI</option><option value="VII">VII</option><option value="VIII">VIII</option><option value="IX">IX</option></select></div>
+                        <div class="form-group"><label for="section">SECTION</label><select id="section" name="section" required><option value="">-- SELECT SECTION --</option><option value="MAHA">MAHA</option><option value="RISHI">RISHI</option><option value="NONE">NONE</option></select></div>
+                        <div class="form-group"><label for="roll_no">ROLL NO</label><input type="text" id="roll_no" name="roll_no" placeholder="ENTER ROLL NUMBER" required></div>
+                        <div class="form-group"><label for="dob">DATE OF BIRTH</label><input type="date" id="dob" name="dob" required></div>
+                    </div>
+                    <h3 class="section-title" style="margin-top: 30px;">PARENT'S & CONTACT DETAILS</h3>
+                    <div class="grid-container">
+                        <div class="form-group"><label for="father_name">FATHER'S NAME</label><input type="text" id="father_name" name="father_name" placeholder="ENTER FATHER'S FULL NAME" required></div>
+                        <div class="form-group"><label for="mother_name">MOTHER'S NAME</label><input type="text" id="mother_name" name="mother_name" placeholder="ENTER MOTHER'S FULL NAME" required></div>
+                        <div class="form-group"><label for="email_id">EMAIL ID</label><input type="email" id="email_id" name="email_id" placeholder="example@email.com" required></div>
+                        <div class="form-group"><label for="phone_number">PHONE NUMBER</label><input type="tel" id="phone_number" name="phone_number" placeholder="ENTER 10-DIGIT NUMBER" required pattern="\d{10}" title="Please enter a valid 10-digit phone number"></div>
+                    </div>
+                    <h3 class="section-title" style="margin-top: 30px;">DOCUMENT UPLOADS</h3>
+                    <div class="upload-section">
+                        <div class="form-group">
+                            <label>STUDENT PHOTO</label>
+                            <div class="upload-box" id="photoUploadBox">
+                                <label for="student_photo" class="upload-btn">📤 Choose File</label>
+                                <input type="file" id="student_photo" name="student_photo" accept="image/jpeg, image/png" required>
+                                <div class="file-info">
+                                    <p class="file-name" id="photoFileName"></p><span class="upload-success-icon" id="photoSuccessIcon">✔</span>
+                                </div>
+                                <p class="upload-text">Max 100KB (JPEG/PNG)</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>STUDENT SIGNATURE</label>
+                            <div class="upload-box" id="signatureUploadBox">
+                                <label for="student_signature" class="upload-btn">📤 Choose File</label>
+                                <input type="file" id="student_signature" name="student_signature" accept="image/jpeg, image/png" required>
+                                <div class="file-info">
+                                    <p class="file-name" id="signatureFileName"></p><span class="upload-success-icon" id="signatureSuccessIcon">✔</span>
+                                </div>
+                                <p class="upload-text">Max 50KB (JPEG/PNG)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="declaration">
+                    <h3>Declaration</h3>
+                    <p>I hereby declare that the information given above is true and correct to the best of my knowledge. I understand that any false information may lead to cancellation of my application.</p>
+                    <label class="declaration-check"><input type="checkbox" id="declaration_agree" name="declaration_agree" required> I Agree</label>
+                </section>
+                <div class="button-container">
+                    <button type="button" id="previewBtn" class="action-btn preview-btn">Preview & Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="success-message" id="successMessage">
+            <div class="success-animation">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
             </div>
-        </form>
+            <h2>Submission Successful!</h2>
+            <p>Your application form has been submitted.</p>
+            <p><strong>For your Application Number, please check your email.</strong></p>
+        </div>
         <div id="loader" class="loader"></div>
-    </div>
-    
-    <div class="success-message" id="successMessage">
-        <h2>✅ Submission Successful!</h2>
-        <p>Your application form has been submitted successfully.</p>
-        <p><strong>For your Application Number, please check your email.</strong></p>
-    </div>
-
-    <div id="previewModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Application Preview</h2>
-                <span class="close-btn">&times;</span>
-            </div>
-            <div class="preview-data" id="previewData"></div>
-            <div class="button-container" style="margin-top: 20px;">
-                <button type="button" id="closeModalBtn" class="action-btn preview-btn" style="background-color: #777;">Edit</button>
-                <button type="button" id="submitBtn" class="action-btn submit-btn" style="display:inline-block; background-color: #ff6600;">Confirm & Submit</button>
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Application Preview</h2>
+                    <span class="close-btn">&times;</span>
+                </div>
+                <div class="preview-data" id="previewData"></div>
+                <div class="button-container" style="margin-top: 20px;">
+                    <button type="button" id="closeModalBtn" class="action-btn preview-btn" style="background-color: #777;">Edit</button>
+                    <button type="button" id="submitBtn" class="action-btn" style="background-color: var(--accent-color);">Confirm & Submit</button>
+                </div>
             </div>
         </div>
     </div>
@@ -210,25 +167,29 @@
         const previewDataContainer = document.getElementById('previewData');
         const studentPhotoInput = document.getElementById('student_photo');
         const studentSignatureInput = document.getElementById('student_signature');
-        
-        // --- IMPORTANT: PASTE YOUR LATEST DEPLOYMENT URL HERE ---
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxpDAsQYEduhXOyXvGVOxvDbzqZAwGzkBxx8z6rOkunnRF0sbTEaGs5tS7R4byTHMGb/exec"; 
+        const SCRIPT_URL = "YOUR_LATEST_DEPLOYMENT_URL_HERE"; 
 
-        // --- NEW FEATURE: SHOW FILENAME ON SELECTION ---
-        studentPhotoInput.addEventListener('change', () => {
-            const fileName = studentPhotoInput.files[0] ? studentPhotoInput.files[0].name : "";
-            document.getElementById('photoFileName').textContent = fileName;
-        });
-        studentSignatureInput.addEventListener('change', () => {
-            const fileName = studentSignatureInput.files[0] ? studentSignatureInput.files[0].name : "";
-            document.getElementById('signatureFileName').textContent = fileName;
-        });
+        function handleFileUpload(input, nameEl, iconEl, boxEl) {
+            input.addEventListener('change', () => {
+                const file = input.files[0];
+                if (file) {
+                    nameEl.textContent = file.name;
+                    iconEl.style.opacity = '1';
+                    boxEl.style.backgroundColor = '#e8f5e9';
+                } else {
+                    nameEl.textContent = '';
+                    iconEl.style.opacity = '0';
+                    boxEl.style.backgroundColor = 'transparent';
+                }
+            });
+        }
+        handleFileUpload(studentPhotoInput, document.getElementById('photoFileName'), document.getElementById('photoSuccessIcon'), document.getElementById('photoUploadBox'));
+        handleFileUpload(studentSignatureInput, document.getElementById('signatureFileName'), document.getElementById('signatureSuccessIcon'), document.getElementById('signatureUploadBox'));
         
         previewBtn.addEventListener('click', () => {
             if (form.checkValidity()) {
                 let previewHTML = '<table>';
                 const formData = new FormData(form);
-                
                 for (const [key, value] of formData.entries()) {
                     if (key.includes('photo') || key.includes('signature')) {
                         const file = value;
@@ -248,42 +209,59 @@
             }
         });
 
-        const closeModal = () => {
-            modal.style.display = 'none';
-        };
-
+        const closeModal = () => { modal.style.display = 'none'; };
         closeModalBtn.addEventListener('click', closeModal);
         editBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => {
-            if (event.target == modal) {
-                closeModal();
-            }
-        });
+        window.addEventListener('click', (event) => { if (event.target == modal) { closeModal(); } });
 
         submitBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const loader = document.getElementById('loader');
             const formContainer = document.getElementById('formContainer');
-            const successMessage = document.getElementById('successMessage');
             closeModal();
             loader.style.display = 'block';
             formContainer.style.display = 'none';
+
             const formData = new FormData(form);
-            
-            fetch(SCRIPT_URL, { method: 'POST', body: formData })
-                .then(res => res.json())
-                .then(data => {
-                    loader.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    console.log('Success:', data);
-                })
-                .catch(error => {
-                    loader.style.display = 'none';
-                    formContainer.style.display = 'block';
-                    console.error('Error:', error);
-                    alert('An error occurred during submission. Please try again.');
-                });
+            const dataObject = Object.fromEntries(formData.entries());
+
+            const photoFile = studentPhotoInput.files[0];
+            const signatureFile = studentSignatureInput.files[0];
+            const reader1 = new FileReader();
+            const reader2 = new FileReader();
+
+            reader1.onloadend = () => {
+                dataObject.student_photo = reader1.result;
+                dataObject.student_photo_name = photoFile.name;
+                dataObject.student_photo_type = photoFile.type;
+                reader2.onloadend = () => {
+                    dataObject.student_signature = reader2.result;
+                    dataObject.student_signature_name = signatureFile.name;
+                    dataObject.student_signature_type = signatureFile.type;
+                    sendData(dataObject);
+};
+                reader2.readAsDataURL(signatureFile);
+            };
+            reader1.readAsDataURL(photoFile);
         });
+
+        function sendData(data) {
+            fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) })
+            .then(res => res.json())
+            .then(data => {
+                const loader = document.getElementById('loader');
+                const successMessage = document.getElementById('successMessage');
+                loader.style.display = 'none';
+                successMessage.style.display = 'block';
+                setTimeout(() => { successMessage.style.opacity = '1'; }, 10);
+            })
+            .catch(error => {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('formContainer').style.display = 'block';
+                console.error('Error:', error);
+                alert('An error occurred during submission. Please try again.');
+            });
+        }
 
         function formatLabel(key) {
             return key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
